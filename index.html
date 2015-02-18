@@ -1,0 +1,61 @@
+<!doctype html>
+
+<html>
+<head>
+	<title>New Tab Scratchpad</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+<head>
+<body>
+
+	<main class="page-wrap">
+
+		<div class="notebook">
+			<ul id="list-notes" class="list-plain list-notes"></ul>
+		</div>
+
+		<button id="menu" class="button-inline btn-black btn-menu">Menu</button>
+
+		<div class="notepad">
+			<div class="wrapper">
+
+				<h2 id="page-title">New Tab Scratchpad</h2>
+
+				<form>
+					<fieldset>
+						<ol class="list-plain">
+							<li>
+								<textarea id="content" class="content-area" autofocus></textarea>
+							</li>
+						</ol>
+					</fieldset>
+				</form>
+
+				<div class="controls container">
+					<a href="#" id="save" class="btn-green">Save</a>
+
+					<a href="#" id="clear" class="btn-red">Clear</a>
+					<div class="align-right container">
+						<a id="save-later" class="align-right btn-green">Save to Folder</a>
+
+						<div class="align-right title-box js-hidden" id="title-box">
+							<label>Title:</label>
+							<input type="text" name="title" id="title">
+							<button id="save-later-confirm" class="button-inline btn-green">Save</button>
+							<button id="save-later-cancel" class="button-inline btn-red">Cancel</button>
+							<p id="title-message" class="title-message"></p>
+						</div>
+					</div>
+				</div>
+
+				<p id="messages" class="js-hidden"></p>
+			</div>
+		</div>
+	</main>
+
+	<script src="js/jquery.min.js"></script>
+	<!-- <script src="js/wysihtml5x-toolbar.min.js"></script>
+	<script src="js/advanced_and_extended.js"></script> -->
+	<script src="js/app.js"></script>
+
+</body>
+</html>
