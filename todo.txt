@@ -1,6 +1,0 @@
-* settings
-**** themes
-* make themes
-* contenteditable title
-* list of saved notes
-* switch from localstorage to chrome storage
