@@ -2,7 +2,7 @@
 
 ####Google Chrome extension to turn new tabs into notebooks.
 
-**Note: still in production, but it mostly works**
+**Note: still in deveopment, but it mostly works**
 
 Open a new tab, have a textarea already focused, ready to take notes. Save for later. Save to  list to load later. Sync across your Chrome account. Do a happy dance.
 
