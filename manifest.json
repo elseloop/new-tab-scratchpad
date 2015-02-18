@@ -2,7 +2,7 @@
    "chrome_url_overrides": {
       "newtab": "index.html"
    },
-   "description": "Replace new tab screen editable note pad with simple local storage abilities.",
+   "description": "Replace new tab screen with an editable note pad that has Chrome sync storage abilities.",
    // "icons": {
    //    "128": "images/icon128.png",
    //    "16": "images/icon16.png",
