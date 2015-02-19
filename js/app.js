@@ -46,7 +46,9 @@
 
 		getCount : function () {
 			chrome.storage.sync.get("notesFolder", function(data) {
-				return settings.count = Scratchpad.countObject(data['notesFolder']) ? Scratchpad.countObject(data['notesFolder']) : 0;
+				settings.count = Scratchpad.countObject(data['notesFolder']) ? Scratchpad.countObject(data['notesFolder']) : 0;
+
+				return settings.count;
 			});
 		},
 
@@ -58,7 +60,7 @@
 				if (obj[i]) {
 					newArray.push(obj[i]);
 				}
-			};
+			}
 
 			return newArray;
 		},
@@ -79,7 +81,7 @@
 		},
 
 		savePad : function () {
-			settings.saveBtn.on( 'click', function (e) {
+			settings.saveBtn.on( 'click.save', function (e) {
 				var content = $('#content').val(),
 					noteContents = {};
 
@@ -106,6 +108,7 @@
 					settings.pageTitle.text('New Tab Scratchpad');
 					settings.mssgBox.text("Scratchpad cleared.").show().fadeOut(2500);
 					settings.content.val('');
+					Scratchpad.bindSave();
 				});
 			});
 		},
@@ -116,7 +119,7 @@
 			});
 		},
 
-		saveCanel : function () {
+		saveCancel : function () {
 			settings.saveLaterCancel.on( 'click', function () {
 				return settings.titleBox.fadeOut(750);
 			});
@@ -124,22 +127,23 @@
 
 		saveConfirm : function () {
 			Scratchpad.onSaveClick();
-			Scratchpad.saveCanel();
+			Scratchpad.saveCancel();
 
 			settings.saveLaterConfirm.on( "click", function () {
 				var title = settings.titleInput.val(),
-					title = title.replace(/'/g, '&rsquo;');
 					body = settings.content.val(),
 					note = {};
 
 				if ( title.length ) {
-					note = {};
 					note[title] = body;
-					chrome.storage.sync.set(note, function(title) {
+					chrome.storage.sync.set(note, function(response) {
+						var title = settings.titleInput.val();
 						settings.titleBox.empty().blur();
 						settings.saveLaterConfirm.blur();
 						Scratchpad.refreshItemsList();
 						Scratchpad.onSaveClick();
+						settings.pageTitle.text(title);
+						Scratchpad.bindUpdate();
 					});
 				}
 				else {
@@ -158,17 +162,27 @@
 					if ( key !== 'currentNote') {
 						qKey = key.replace(/’/g, "&rsquo;");
 
-						var note = "<li><div class='list-note-inner container'><span>"+key+"</span><button data-note-title='"+ qKey +"' class='btn-load-note button-inline btn-green'>Load</button><button data-note-title='"+ qKey +"' class='btn-delete-note button-inline btn-red'>Delete</button></div></li>";
-						Scratchpad.settings.notesList.append(note);
+						var note = "<li class='notes-list-item'><div class='list-note-inner container'><span>"+key+"</span><button data-note-title='"+ qKey +"' class='btn-load-note button-inline btn-green'>Load</button><button data-note-title='"+ qKey +"' class='btn-delete-note button-inline btn-red'>Delete</button></div></li>";
+
+						settings.notesList.append(note);
 					}
 				});
 				Scratchpad.loadItem();
+				Scratchpad.addListClasses();
 				Scratchpad.deleteItem();
 			});
 		},
 
+		addListClasses : function () {
+			var notes = settings.notesList.find('li');
+
+			notes.each( function(i) {
+				$(this).addClass('notes-list-item-' + (i+1));
+			});
+		},
+
 		refreshItemsList : function () {
-			Scratchpad.settings.notesList.empty();
+			settings.notesList.empty();
 			Scratchpad.loadItemsList();
 		},
 
@@ -176,7 +190,31 @@
 			$(".btn-load-note").on( "click", function() {
 				var title = $(this).attr('data-note-title');
 				Scratchpad.setPad(title);
+				Scratchpad.bindUpdate();
 			});
+		},
+
+		bindUpdate : function () {
+			settings.saveBtn
+				.off('click.save')
+				.text('Update')
+				.on('click.update', function(e) {
+					var title = settings.pageTitle.text(),
+						body = settings.content.val(),
+						note = {};
+
+					e.preventDefault();
+
+					note[title] = body;
+					chrome.storage.sync.set(note, function() {
+						Scratchpad.refreshItemsList();
+					});
+				});
+		},
+
+		bindSave : function () {
+			settings.saveBtn.text('Save');
+			Scratchpad.savePad();
 		},
 
 		deleteItem : function () {
@@ -191,15 +229,15 @@
 		},
 
 		toggleMenu : function() {
-			Scratchpad.settings.menu.on("click", function(e) {
+			settings.menu.on("click", function(e) {
 				e.preventDefault();
 				if ( $("body").hasClass("menu-active") ) {
 					$("body").removeClass("menu-active");
-					Scratchpad.settings.menu.text('Menu').blur();
+					settings.menu.text('Menu').blur();
 				}
 				else {
 					$("body").addClass("menu-active");
-					Scratchpad.settings.menu.text('Close').blur();
+					settings.menu.text('Close').blur();
 				}
 			});
 		},
@@ -216,7 +254,7 @@
 			});
 		},
 
-	}
+	};
 
 	Scratchpad.init();
 

@@ -520,6 +520,7 @@ fieldset {
 	border: 1px solid;
 	cursor:pointer;
 	font-size: .75rem;
+	font-weight: normal;
 	margin-right: .5rem;
 	padding: .5rem .75rem;
 	text-decoration: none;
@@ -616,6 +617,9 @@ fieldset {
 	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 }
+.notebook-inner {
+	padding: 0 1rem;
+}
 .menu-active .notebook {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
@@ -635,7 +639,7 @@ fieldset {
 	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 }
 .menu-active .list-notes,
-.menu-active .list-notes li {
+.menu-active .list-notes .notes-list-item {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 	-webkit-transition: -webkit-transform 0.8s;
@@ -643,28 +647,110 @@ fieldset {
 	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 }
-.list-notes li {
+.list-notes .notes-list-item {
 	border-top: 1px solid #333;
 	color: #333;
 	padding: .5rem .25rem .5rem 2rem;
 	text-decoration: none;
 	text-transform: uppercase;
-	-webkit-transition: -webkit-transform 0s 0.4s;
-	transition: transform 0s 0.4s;
-	-webkit-transition-duration: 0.9s;
-	transition-duration: 0.9s;
-	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-	-webkit-transform: translate3d(0,500px,0);
-	transform: translate3d(0,500px,0);
 }
 .list-notes span {
 	display: block;
 	margin-bottom: .25rem;
 }
-.list-notes li:last-child {
+.list-notes .notes-list-item:last-child {
 	border-bottom: 1px solid #333;
 	margin-bottom: 1rem;
+}
+.list-notes .notes-list-item {
+	opacity: 0;
+}
+.menu-active .list-notes .notes-list-item {
+	-webkit-transition: -webkit-transform 0s 0.4s;
+	transition: transform 0s 0.4s;
+	-webkit-transition-duration: 1s;
+	transition-duration: 1s;
+	opacity: 1;
+}
+.list-notes .notes-list-item-1 {
+	-webkit-transform: translate3d(0,500px,0);
+	transform: translate3d(0,500px,0);
+}
+.list-notes .notes-list-item-2 {
+	-webkit-transform: translate3d(0,750px,0);
+	transform: translate3d(0,750px,0);
+}
+.list-notes .notes-list-item-3 {
+	-webkit-transform: translate3d(0,1000px,0);
+	transform: translate3d(0,1000px,0);
+}
+.list-notes .notes-list-item-4 {
+	-webkit-transform: translate3d(0,1250px,0);
+	transform: translate3d(0,1250px,0);
+}
+.list-notes .notes-list-item-5 {
+	-webkit-transform: translate3d(0,1500px,0);
+	transform: translate3d(0,1500px,0);
+}
+.list-notes .notes-list-item-6 {
+	-webkit-transform: translate3d(0,1750px,0);
+	transform: translate3d(0,1750px,0);
+}
+.list-notes .notes-list-item-7 {
+	-webkit-transform: translate3d(0,2000px,0);
+	transform: translate3d(0,2000px,0);
+}
+.list-notes .notes-list-item-8 {
+	-webkit-transform: translate3d(0,2250px,0);
+	transform: translate3d(0,2250px,0);
+}
+.list-notes .notes-list-item-9 {
+	-webkit-transform: translate3d(0,2500px,0);
+	transform: translate3d(0,2500px,0);
+}
+.list-notes .notes-list-item-10 {
+	-webkit-transform: translate3d(0,2750px,0);
+	transform: translate3d(0,2750px,0);
+}
+.list-notes .notes-list-item-11 {
+	-webkit-transform: translate3d(0,3000px,0);
+	transform: translate3d(0,3000px,0);
+}
+.list-notes .notes-list-item-12 {
+	-webkit-transform: translate3d(0,3250px,0);
+	transform: translate3d(0,3250px,0);
+}
+.list-notes .notes-list-item-13 {
+	-webkit-transform: translate3d(0,3500px,0);
+	transform: translate3d(0,3500px,0);
+}
+.list-notes .notes-list-item-14 {
+	-webkit-transform: translate3d(0,3750px,0);
+	transform: translate3d(0,3750px,0);
+}
+.list-notes .notes-list-item-15 {
+	-webkit-transform: translate3d(0,4000px,0);
+	transform: translate3d(0,4000px,0);
+}
+.list-notes .notes-list-item-16 {
+	-webkit-transform: translate3d(0,4250px,0);
+	transform: translate3d(0,4250px,0);
+}
+.list-notes .notes-list-item-17 {
+	-webkit-transform: translate3d(0,4500px,0);
+	transform: translate3d(0,4500px,0);
+}
+.list-notes .notes-list-item-18 {
+	-webkit-transform: translate3d(0,4750px,0);
+	transform: translate3d(0,4750px,0);
+}
+.list-notes .notes-list-item-19 {
+	-webkit-transform: translate3d(0,5000px,0);
+	transform: translate3d(0,5000px,0);
+}
+.list-notes .notes-list-item-20 {
+	-webkit-transform: translate3d(0,5250px,0);
+	transform: translate3d(0,5250px,0);
 }
 
 .align-right {
