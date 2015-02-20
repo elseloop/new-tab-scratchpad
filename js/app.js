@@ -174,7 +174,7 @@
 					if ( key !== 'currentNote') {
 						qKey = key.replace(/’/g, "&rsquo;");
 
-						var note = "<li class='notes-list-item'><div class='list-note-inner container'><span>"+key+"</span><button data-note-title='"+ qKey +"' class='btn-load-note button-inline btn-green'>Load</button><button data-note-title='"+ qKey +"' class='btn-delete-note button-inline btn-red'>Delete</button></div></li>";
+						var note = '<li class="notes-list-item"><div class="list-note-inner container"><span>'+key+'</span><button data-note-title="'+ qKey +'" class="btn-load-note button-inline btn-green">Load</button><button data-note-title="'+ qKey +'" class="btn-delete-note button-inline btn-red">Delete</button></div></li>';
 
 						settings.notesList.append(note);
 					}
