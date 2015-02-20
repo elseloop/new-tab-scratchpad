@@ -505,6 +505,7 @@ fieldset {
 	margin: 0;
 	max-width: 100%;
 	min-height: 50vh;
+	overflow: hidden;
 	padding: 1rem;
 	resize: vertical;
 	width: 100%;

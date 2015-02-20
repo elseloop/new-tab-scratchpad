@@ -30,6 +30,7 @@
 			Scratchpad.saveConfirm();
 			Scratchpad.loadItemsList();
 			Scratchpad.bindEnterKey();
+			Scratchpad.flexibleTextarea();
 		},
 
 		countObject : function (object) {
@@ -71,7 +72,18 @@
 			// }
 			chrome.storage.sync.get(note, function(data) {
 				if ( ! $.isEmptyObject(data) ) {
-					settings.content.val(data[note]);
+					var textarea = settings.content;
+					textarea.val(data[note]);
+
+					var setTextareaHeight = Scratchpad._debounce(function(textarea) {
+							if (textarea.get(0).scrollHeight > textarea.get(0).clientHeight) {
+								textarea.animate({
+									height: textarea.get(0).scrollHeight + "px"
+								}, 250);
+							}
+						}, 250);
+
+					setTextareaHeight(textarea);
 
 					if ( note !== 'currentNote') {
 						settings.pageTitle.text(note);
@@ -107,7 +119,7 @@
 					// empty notepad on success and display confirmation
 					settings.pageTitle.text('New Tab Scratchpad');
 					settings.mssgBox.text("Scratchpad cleared.").show().fadeOut(2500);
-					settings.content.val('');
+					settings.content.val('').attr('style', '');
 					Scratchpad.bindSave();
 				});
 			});
@@ -252,6 +264,36 @@
 			settings.titleInput.on( "enterKey", function() {
 				return settings.saveLaterConfirm.click();
 			});
+		},
+
+		flexibleTextarea : function () {
+			var setTextareaHeight = Scratchpad._debounce(function(textarea) {
+					if (textarea.scrollHeight > textarea.clientHeight) {
+						$(textarea).animate({
+							height: textarea.scrollHeight + "px"
+						}, 250);
+					}
+				}, 250);
+
+			return settings.content.on( 'keyup.flex', function () {
+				setTextareaHeight(this);
+			});
+		},
+
+		// underscore.js _.debounce function
+		_debounce : function(func, wait, immediate) {
+			var timeout;
+			return function() {
+				var context = this, args = arguments;
+				var later = function() {
+					timeout = null;
+					if (!immediate) func.apply(context, args);
+				};
+				var callNow = immediate && !timeout;
+				clearTimeout(timeout);
+				timeout = setTimeout(later, wait);
+				if (callNow) func.apply(context, args);
+			};
 		},
 
 	};
