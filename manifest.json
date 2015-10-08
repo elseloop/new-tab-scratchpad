@@ -3,11 +3,9 @@
       "newtab": "index.html"
    },
    "description": "Replace new tab screen with an editable note pad that has Chrome sync storage abilities.",
-   // "icons": {
-   //    "128": "images/icon128.png",
-   //    "16": "images/icon16.png",
-   //    "96": "images/icon96.png"
-   // },
+   "icons": {
+      "16": "images/icon16.png"
+   },
    "manifest_version": 2,
    "name": "New Tab Scratchpad",
    // "options_page": "index.html#options",
