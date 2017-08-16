@@ -433,7 +433,7 @@ th {
 body {
 	background-color: #f0f0f0;
 	color: #333;
-	font-family: Open Sans, sans-serif;
+	font-family: Roboto, sans-serif;
 	font-size: 1rem;
 }
 .page-wrap {
@@ -447,7 +447,7 @@ body {
 	max-width:60rem;
 }
 .notepad {
-	overflow-y: scroll;
+	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 	padding: 2rem;
 	-webkit-transition: -webkit-transform 0.4s;
@@ -607,10 +607,10 @@ fieldset {
 	background: #ccc;
 	height: 100%;
 	padding: 5.5rem 0 1rem;
-	position: absolute;
+	position: fixed;
 	width: 20rem;
 	z-index: 10;
-	overflow: scroll;
+	overflow: auto;
 	-webkit-transform: translate3d(-20rem,0,0);
 	transform: translate3d(-20rem,0,0);
 	-webkit-transition: -webkit-transform 0.4s;
